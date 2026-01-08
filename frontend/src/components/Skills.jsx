@@ -4,7 +4,10 @@ import {
   FaJenkins, FaGithub, FaDocker, FaAws, 
   FaTerminal, FaCode, FaLock 
 } from 'react-icons/fa';
-import { SiKubernetes, SiTerraform, SiAnsible, SiPrometheus, SiGrafana } from 'react-icons/si';
+import { 
+  SiMicrosoftazure, SiGooglecloud, SiOracle, 
+  SiKubernetes, SiTerraform, SiAnsible, SiPrometheus, SiGrafana 
+} from 'react-icons/si';
 import styled from 'styled-components';
 import { ThemeContext } from '../context/ThemeContext';
 
@@ -18,7 +21,7 @@ const SkillCategory = styled(Card)`
   margin: 0 10px;
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -28,19 +31,19 @@ const SkillCategory = styled(Card)`
     height: 4px;
     background: linear-gradient(90deg, #ac81c0, #6c5ce7, #a29bfe);
   }
-  
+
   &:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 20px 40px rgba(172, 129, 192, 0.4);
     border-color: rgba(172, 129, 192, 0.7);
   }
-  
+
   @media (max-width: 768px) {
     height: 250px;
     margin: 0 5px;
     border-radius: 16px;
   }
-  
+
   @media (max-width: 576px) {
     height: 220px;
     margin: 0;
@@ -54,13 +57,12 @@ const CategoryHeader = styled.div`
   text-align: center;
   font-weight: 700;
   font-size: 1.1rem;
-  text-shadow: ${props => props.isDark ? '0 2px 4px rgba(0,0,0,0.3)' : '0 1px 2px rgba(255,255,255,0.5)'};
-  
+
   @media (max-width: 768px) {
     padding: 1.2rem 0.8rem 0.8rem;
     font-size: 1rem;
   }
-  
+
   @media (max-width: 576px) {
     padding: 1rem 0.5rem 0.5rem;
     font-size: 0.9rem;
@@ -75,17 +77,17 @@ const SkillItem = styled.div`
   background: rgba(172, 129, 192, 0.15);
   border-radius: 12px;
   transition: all 0.3s ease;
-  
+
   &:hover {
     background: rgba(172, 129, 192, 0.25);
     transform: translateX(5px);
   }
-  
+
   @media (max-width: 768px) {
     padding: 0.6rem 0.8rem;
     margin: 0.2rem 0;
   }
-  
+
   @media (max-width: 576px) {
     padding: 0.5rem 0.6rem;
   }
@@ -99,13 +101,13 @@ const SkillIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   @media (max-width: 768px) {
     font-size: 1.2rem;
     width: 25px;
     margin-right: 0.8rem;
   }
-  
+
   @media (max-width: 576px) {
     font-size: 1rem;
     width: 20px;
@@ -117,21 +119,16 @@ const Skills = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [cardsPerSlide, setCardsPerSlide] = useState(3);
   const { isDarkMode } = useContext(ThemeContext);
-  
+
   useEffect(() => {
     const updateCardsPerSlide = () => {
-      if (window.innerWidth < 576) {
-        setCardsPerSlide(1); // Mobile: 1 card
-      } else if (window.innerWidth < 992) {
-        setCardsPerSlide(2); // Tablet: 2 cards
-      } else {
-        setCardsPerSlide(3); // Desktop: 3 cards
-      }
+      if (window.innerWidth < 576) setCardsPerSlide(1);
+      else if (window.innerWidth < 992) setCardsPerSlide(2);
+      else setCardsPerSlide(3);
     };
-    
+
     updateCardsPerSlide();
     window.addEventListener('resize', updateCardsPerSlide);
-    
     return () => window.removeEventListener('resize', updateCardsPerSlide);
   }, []);
 
@@ -163,7 +160,10 @@ const Skills = () => {
     {
       title: "Cloud Platforms",
       skills: [
-        { name: "AWS", icon: <FaAws /> }
+        { name: "AWS", icon: <FaAws /> },
+        { name: "Azure", icon: <SiMicrosoftazure /> },
+        { name: "Google Cloud", icon: <SiGooglecloud /> },
+        { name: "Oracle Cloud", icon: <SiOracle /> }
       ]
     },
     {
@@ -182,15 +182,17 @@ const Skills = () => {
       ]
     },
     {
-      title: "Security",
-      skills: [
-        { name: "Secret Management", icon: <FaLock /> },
-        { name: "IAM", icon: <FaLock /> }
-      ]
-    }
+  title: "Security",
+  skills: [
+    { name: "IAM & Access Control", icon: <FaLock /> },          // Gestión de identidades y permisos
+    { name: "Secrets Management", icon: <FaLock /> },            // Gestión de contraseñas y claves
+    { name: "Encryption & KMS", icon: <FaLock /> },              // Cifrado de datos con servicios KMS
+    { name: "Cloud Security Monitoring", icon: <FaLock /> }      // Monitoreo de seguridad y auditorías
+  ]
+}
+
   ];
 
-  // Group categories based on screen size
   const groupedCategories = [];
   for (let i = 0; i < skillCategories.length; i += cardsPerSlide) {
     groupedCategories.push(skillCategories.slice(i, i + cardsPerSlide));
@@ -202,11 +204,11 @@ const Skills = () => {
         <Col lg={8} className="mx-auto text-center">
           <h2 className="section-title">Skills & Tools</h2>
           <p className="lead mb-5">
-            My technical expertise across the DevOps ecosystem
+            My technical expertise across cloud solutions architecture and DevOps engineering.
           </p>
         </Col>
       </Row>
-      
+
       <Carousel 
         activeIndex={activeIndex} 
         onSelect={setActiveIndex}
@@ -220,8 +222,8 @@ const Skills = () => {
             <Row className="justify-content-center">
               {group.map((category, index) => {
                 const colClass = cardsPerSlide === 1 ? 'col-12' : 
-                               cardsPerSlide === 2 ? 'col-md-6 col-12' : 
-                               'col-lg-4 col-md-6 col-12';
+                                 cardsPerSlide === 2 ? 'col-md-6 col-12' : 
+                                 'col-lg-4 col-md-6 col-12';
                 return (
                   <div key={index} className={`${colClass} mb-4`}>
                     <SkillCategory theme={isDarkMode ? 'dark' : 'light'}>
@@ -234,18 +236,14 @@ const Skills = () => {
                             <SkillIcon isDark={isDarkMode}>
                               {skill.icon}
                             </SkillIcon>
-                            <div className="flex-grow-1" style={{display: 'flex', alignItems: 'center'}}>
-                              <span 
-                                className="fw-medium" 
-                                style={{
-                                  color: isDarkMode ? '#ffffff' : '#333333', 
-                                  fontSize: '0.95rem',
-                                  fontWeight: '500',
-                                  display: 'block',
-                                  width: '100%',
-                                  textAlign: 'left'
-                                }}
-                              >
+                            <div style={{flexGrow: 1, display: 'flex', alignItems: 'center'}}>
+                              <span style={{
+                                color: isDarkMode ? '#ffffff' : '#333333',
+                                fontSize: '0.95rem',
+                                fontWeight: '500',
+                                textAlign: 'left',
+                                width: '100%'
+                              }}>
                                 {skill.name}
                               </span>
                             </div>
@@ -260,117 +258,6 @@ const Skills = () => {
           </Carousel.Item>
         ))}
       </Carousel>
-      
-      <style jsx>{`
-        .skills-carousel {
-          padding: 0 60px;
-        }
-        
-        @media (max-width: 992px) {
-          .skills-carousel {
-            padding: 0 40px;
-          }
-        }
-        
-        .skills-carousel .carousel-indicators {
-          bottom: -50px;
-        }
-        
-        .skills-carousel .carousel-indicators button {
-          background-color: #ac81c0;
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-        }
-        
-        .skills-carousel .carousel-control-prev,
-        .skills-carousel .carousel-control-next {
-          width: 50px;
-          height: 50px;
-          background: rgba(172, 129, 192, 0.3);
-          border-radius: 50%;
-          top: 50%;
-          transform: translateY(-50%);
-          backdrop-filter: blur(10px);
-          border: 2px solid rgba(172, 129, 192, 0.5);
-        }
-        
-        .skills-carousel .carousel-control-prev {
-          left: -30px;
-        }
-        
-        .skills-carousel .carousel-control-next {
-          right: -30px;
-        }
-        
-        .skills-carousel .carousel-control-prev:hover,
-        .skills-carousel .carousel-control-next:hover {
-          background: rgba(172, 129, 192, 0.6);
-        }
-        
-        .skills-carousel .carousel-control-prev-icon,
-        .skills-carousel .carousel-control-next-icon {
-          filter: brightness(0) saturate(100%) invert(100%);
-          width: 20px;
-          height: 20px;
-        }
-        
-        [data-theme='light'] .skills-carousel .carousel-control-prev-icon,
-        [data-theme='light'] .skills-carousel .carousel-control-next-icon {
-          filter: brightness(0) saturate(100%) invert(0%);
-        }
-        
-        @media (max-width: 768px) {
-          .skills-carousel {
-            padding: 0 30px;
-          }
-          
-          .skills-carousel .carousel-control-prev {
-            left: -15px;
-            width: 40px;
-            height: 40px;
-          }
-          
-          .skills-carousel .carousel-control-next {
-            right: -15px;
-            width: 40px;
-            height: 40px;
-          }
-          
-          .skills-carousel .carousel-control-prev-icon,
-          .skills-carousel .carousel-control-next-icon {
-            width: 16px;
-            height: 16px;
-          }
-        }
-        
-        @media (max-width: 576px) {
-          .skills-carousel {
-            padding: 0 20px;
-          }
-          
-          .skills-carousel .carousel-control-prev {
-            left: -10px;
-            width: 35px;
-            height: 35px;
-          }
-          
-          .skills-carousel .carousel-control-next {
-            right: -10px;
-            width: 35px;
-            height: 35px;
-          }
-          
-          .skills-carousel .carousel-indicators {
-            bottom: -40px;
-          }
-          
-          .skills-carousel .carousel-indicators button {
-            width: 10px;
-            height: 10px;
-          }
-        }
-      `}</style>
     </Container>
   );
 };

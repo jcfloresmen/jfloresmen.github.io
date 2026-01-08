@@ -15,24 +15,25 @@ const ToggleContainer = styled.div`
 `;
 
 const String = styled.div`
-  width: 2px;
-  height: 15px;
-  background-color: #888;
+  width: 3px; /* más grueso */
+  height: 18px; /* un poco más largo */
+  background-color: ${props => props.isDarkMode ? '#555' : '#222'}; /* colores más oscuros */
+  border-radius: 2px;
   
   @media (max-width: 992px) {
-    height: 10px;
+    height: 12px;
   }
 `;
 
 const BulbWrapper = styled.div`
   transform: rotate(180deg);
-  color: ${props => props.isDarkMode ? '#555' : '#f8d568'};
-  font-size: 1.5rem;
+  color: ${props => props.isDarkMode ? '#aaa' : '#888'}; /* tonos metálicos */
+  font-size: 1.8rem; /* más grande y robusto */
   transition: all 0.3s ease;
   position: relative;
   
   @media (max-width: 992px) {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -41,12 +42,13 @@ const Glow = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 25px;
-  height: 25px;
-  background: radial-gradient(circle, rgba(255,213,0,0.6) 0%, rgba(255,213,0,0) 70%);
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle, rgba(100,100,100,0.6) 0%, rgba(0,0,0,0) 70%);
   border-radius: 50%;
-  opacity: ${props => props.isDarkMode ? 0 : 1};
-  transition: opacity 0.3s ease;
+  opacity: ${props => props.isDarkMode ? 1 : 0.6}; /* efecto más sólido */
+  box-shadow: ${props => props.isDarkMode ? '0 0 10px rgba(255,255,255,0.5)' : '0 0 8px rgba(50,50,50,0.5)'};
+  transition: all 0.3s ease;
   z-index: -1;
 `;
 
@@ -55,7 +57,7 @@ const ThemeToggle = () => {
   
   return (
     <ToggleContainer onClick={toggleTheme}>
-      <String />
+      <String isDarkMode={isDarkMode} />
       <BulbWrapper isDarkMode={isDarkMode}>
         <Glow isDarkMode={isDarkMode} />
         <FaLightbulb />

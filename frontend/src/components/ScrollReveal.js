@@ -1,3 +1,5 @@
+import '../styles/index.css';
+
 import { useEffect } from 'react';
 
 const ScrollReveal = () => {
@@ -6,37 +8,36 @@ const ScrollReveal = () => {
     const sectionTitles = document.querySelectorAll('.section-title');
     const sections = document.querySelectorAll('main > div');
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    
+
     const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+
       // Animate regular reveal elements
-      revealElements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (elementTop < windowHeight - 100) {
-          element.classList.add('active');
+      revealElements.forEach((el, i) => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+          // Delay each element for staggered effect
+          setTimeout(() => el.classList.add('active'), i * 80);
         }
       });
-      
+
       // Animate section titles
-      sectionTitles.forEach(title => {
+      sectionTitles.forEach((title, i) => {
         const titleTop = title.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (titleTop < windowHeight - 100) {
-          title.classList.add('animate');
+        if (titleTop < windowHeight - 60) {
+          setTimeout(() => title.classList.add('animate'), i * 100);
         }
       });
-      
-      // Update active navbar link based on scroll position
+
+      // Update navbar active link (scroll spy)
       let currentSectionId = '';
       sections.forEach(section => {
         const sectionTop = section.getBoundingClientRect().top;
-        if (sectionTop < window.innerHeight / 2) {
+        if (sectionTop < windowHeight / 2) {
           currentSectionId = section.id;
         }
       });
-      
+
       if (currentSectionId) {
         navLinks.forEach(link => {
           link.classList.remove('active');
@@ -46,14 +47,27 @@ const ScrollReveal = () => {
         });
       }
     };
-    
-    window.addEventListener('scroll', revealOnScroll);
-    // Initial check
-    setTimeout(revealOnScroll, 300);
-    
-    return () => window.removeEventListener('scroll', revealOnScroll);
+
+    // Optimize scroll performance
+    let ticking = false;
+    const optimizedScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          revealOnScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', optimizedScroll);
+    setTimeout(revealOnScroll, 300); // Initial check
+
+    return () => {
+      window.removeEventListener('scroll', optimizedScroll);
+    };
   }, []);
-  
+
   return null;
 };
 

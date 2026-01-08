@@ -64,12 +64,11 @@ const Contact = () => {
                 <div>
                   <h5 className="mb-0">Email</h5>
                   <p className="mb-0">
-                    <a href="mailto:apurvagargote@gmail.com" style={{ textDecoration: 'none', color: 'inherit' }}>
-                      apurvagargote@gmail.com
+                    <a href="mailto:jcfloresmen@gmail.com" style={{ textDecoration: 'none', color: 'inherit' }}>
+                      jcfloresmen@gmail.com
                     </a>
                   </p>
                 </div>
-
               </div>
 
               <div className="d-flex align-items-center mb-4">
@@ -77,8 +76,8 @@ const Contact = () => {
                 <div>
                   <h5 className="mb-0">LinkedIn</h5>
                   <p className="mb-0">
-                    <a href="https://linkedin.com/in/apurvagargote" target="_blank" rel="noopener noreferrer">
-                      linkedin.com/in/apurvagargote
+                    <a href="https://www.linkedin.com/in/juan-carlos-flores-mendoza/" target="_blank" rel="noopener noreferrer">
+                      linkedin.com/in/juan-carlos-flores-mendoza
                     </a>
                   </p>
                 </div>
@@ -89,8 +88,8 @@ const Contact = () => {
                 <div>
                   <h5 className="mb-0">GitHub</h5>
                   <p className="mb-0">
-                    <a href="https://github.com/apurvagargote" target="_blank" rel="noopener noreferrer">
-                      github.com/apurvagargote
+                    <a href="https://github.com/jcfloresmen/" target="_blank" rel="noopener noreferrer">
+                      github.com/jcfloresmen
                     </a>
                   </p>
                 </div>

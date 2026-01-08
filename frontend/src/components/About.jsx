@@ -9,45 +9,47 @@ const About = () => {
           <h2 className="section-title">About Me</h2>
         </Col>
       </Row>
+
       <Row>
         <Col lg={8} className="mx-auto">
           <Card className="border-0 shadow-sm">
             <Card.Body className="p-5" style={{ textAlign: 'justify' }}>
+              
               <p className="lead">
-                Hello, I’m Apurva Gargote, an aspiring DevOps Engineer passionate about automation, cloud computing, and designing scalable infrastructure.
+                I am Juan Carlos Flores Mendoza, Solutions Architect and DevOps professional with extensive experience leading teams and managing critical infrastructure in enterprise environments.
               </p>
 
-              <h4 className="mt-4">Learning Journey</h4>
+              <h4 className="mt-4">Experience & Leadership</h4>
               <p>
-                I’m actively developing my skills through hands-on projects and structured learning programs. As part of the #90DaysOfDevOps challenge with TrainWithShubham, I’m gaining practical experience with essential DevOps tools and methodologies.
+                Currently at Pacífico Perú, I lead teams and oversee large-scale infrastructure, ensuring secure, scalable, and reliable systems that support critical operations.
               </p>
+
+              <h4 className="mt-4">Technical Expertise</h4>
               <p>
-                My focus includes building CI/CD pipelines, automating infrastructure, and leveraging cloud platforms to effectively bridge development and operations.
+                I specialize in designing scalable and resilient architectures, automating CI/CD pipelines, and deploying secure, containerized applications. I work across AWS, Azure, GCP, and Oracle Cloud to optimize software delivery and operational efficiency.
               </p>
 
               <h4 className="mt-4">DevOps Mindset</h4>
               <p>
-                I believe DevOps revolves around continuous improvement, automation, and collaboration. As a fresher, I dedicate myself to applying my knowledge through real projects, optimizing workflows, and staying updated on emerging technologies.
+                I strongly believe in continuous improvement, automation, and collaboration. I apply best practices in DevOps to reduce deployment times, enhance system reliability, and maximize team productivity.
               </p>
 
               <h4 className="mt-4">Knowledge Sharing</h4>
               <p>
-                I document my learning journey and insights on <a href="https://apurva-g.hashnode.dev/" target="_blank" rel="noopener noreferrer"><u>Hashnode</u></a>, sharing practical solutions and challenges encountered in the DevOps space.
+                I document experiences and share insights from real-world projects in infrastructure and DevOps to inspire and guide other professionals.
               </p>
 
-              <h4 className="mt-4">Interests</h4>
+              <h4 className="mt-4">Professional Interests</h4>
               <p>
-                Beyond work, I enjoy exploring emerging technologies, engaging with tech communities, and staying abreast of trends in cloud-native development, system design, and infrastructure automation.
+                My focus is on cloud technologies, infrastructure automation, system architecture, and DevOps methodologies. I am constantly exploring innovative solutions to optimize processes and deliver real business value.
               </p>
 
               <h4 className="mt-4">Let’s Connect</h4>
               <p>
-                Feel free to reach out via email at <a href="mailto:apurvagargote@gmail.com">apurvagargote@gmail.com</a>. I’m open to collaboration, mentorship, and opportunities in DevOps and cloud engineering.
+                Feel free to reach out via <a href="mailto:jcfloresmen@gmail.com">jcfloresmen@gmail.com</a>. I am open to collaboration, mentorship, and opportunities in DevOps and Cloud Architecture.
               </p>
+
             </Card.Body>
-
-
-
           </Card>
         </Col>
       </Row>
