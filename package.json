@@ -1,7 +1,7 @@
 {
   "name": "devops-portfolio",
   "version": "0.1.0",
-  "homepage": "https://apurva1025.github.io/new-portfolio",
+  "homepage": "https://jfloresmen.github.io/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -46,4 +46,5 @@
   "devDependencies": {
     "gh-pages": "^6.3.0"
   }
+  
 }
